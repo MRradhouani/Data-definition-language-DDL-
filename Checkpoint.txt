@@ -1,0 +1,24 @@
+1. You are asked to create the above given relational model using SQL language and based on the different mentioned constraints.
+
+CREATE TABLE Customer (
+	customer_id NUMBER CHECK (customerID > 0) PRIMARY KEY,
+	Customer_Name VARCHAR(30) NOT NULL,
+	Customer_Tel NUMBER CHECK (postcode > 0)
+);
+CREATE TABLE Product(
+	Product_id NUMBER CHECK (customer_id > 0) PRIMARY KEY,
+	Product_Name VARCHAR(30) NOT NULL,
+	Product_price NUMBER CHECK (postcode > 0)
+);
+
+CREATE TABLE Orders(
+	customer_id NUMBER CHECK (customerID > 0) PRIMARY KEY,
+	Customer_Name VARCHAR(30) NOT NULL,
+	Customer_Tel CHECK (postcode > 0),
+        CONSTRAINT fk_Orders FOREIGN KEY (Product_id) REFERENCES Product(Product_id),
+        CONSTRAINT fk_Orders FOREIGN KEY (customer_id) REFERENCES Product(customer_id)  
+);
+
+After creating tables, write SQL commands:
+1. ALTER TABLE Product ADD Category VARCHAR2(20);
+2. ALTER TABLE Orders ADD OrderDate DATE DEFAULT (SYSDATE);
